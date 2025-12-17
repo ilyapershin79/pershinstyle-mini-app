@@ -48,38 +48,54 @@
   }
 }
 
-/* Telegram Theme Variables */
-:root {
-  --tg-theme-bg-color: #ffffff;
-  --tg-theme-text-color: #000000;
-  --tg-theme-hint-color: #707579;
-  --tg-theme-link-color: #3390ec;
-  --tg-theme-button-color: #3390ec;
-  --tg-theme-button-text-color: #ffffff;
+/* ====== ФИКС ДЛЯ ШИРИНЫ В TELEGRAM WEBAPP ====== */
+/* Только для узких окон Telegram */
+
+@media (max-width: 400px) {
+  .text-4xl, .text-3xl {
+    font-size: clamp(1.5rem, 5vw, 2rem) !important;
+    word-break: break-word;
+    line-height: 1.3 !important;
+  }
+
+  .min-h-screen {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+
+  /* Уменьшаем отступы у карточек */
+  .card-glass {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  /* Уменьшаем видео-логотип */
+  video {
+    max-width: 80% !important;
+    height: auto !important;
+  }
 }
 
-/* Применение темы к основным элементам */
-body {
-  background-color: var(--tg-theme-bg-color);
-  color: var(--tg-theme-text-color);
+/* Гарантируем что длинные слова переносятся */
+.text-center, .text-left, .text-right {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
-/* Кнопки в стиле Telegram */
-.tg-button {
-  background-color: var(--tg-theme-button-color);
-  color: var(--tg-theme-button-text-color);
-  border: none;
-  padding: 12px 24px;
-  border-radius: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: opacity 0.2s;
+/* Фикс для очень длинных заголовков */
+h1, h2, h3 {
+  max-width: 100%;
+  overflow-wrap: break-word;
 }
 
-.tg-button:hover {
-  opacity: 0.9;
+/* Убираем горизонтальный скролл в Telegram */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
-.tg-button:active {
-  opacity: 0.8;
+/* Фикс для flex-контейнеров */
+#root {
+  width: 100%;
+  overflow-x: hidden;
 }
