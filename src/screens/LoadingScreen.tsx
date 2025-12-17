@@ -27,12 +27,12 @@ const LoadingScreen = () => {
 
   return (
     <div className="min-h-screen bg-gradient-pershin flex flex-col items-center justify-center p-6">
-      {/* Логотип - ВАШЕ ВИДЕО */}
+      {/* Логотип - ВАШЕ ВИДЕО - ИСПРАВЛЕНО: mx-auto для центрирования */}
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1, type: 'spring' }}
-        className="relative mb-8"
+        className="relative mb-8 mx-auto"  // ← ДОБАВИЛ mx-auto
       >
         <video
           autoPlay

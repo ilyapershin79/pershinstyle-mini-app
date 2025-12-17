@@ -41,9 +41,33 @@ const HomeScreen = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <h1 className="text-6xl font-display font-bold text-white mb-6">
-            Think.<span className="text-pershin-gold">Dream</span>.Create.
-          </h1>
+          {/* ИСПРАВЛЕННАЯ НАДПИСЬ: три строки с анимацией */}
+          <div className="text-center space-y-2 mb-6">
+            <motion.div
+              className="text-5xl md:text-6xl font-display font-bold text-white"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
+              Think.
+            </motion.div>
+            <motion.div
+              className="text-5xl md:text-6xl font-display font-bold text-pershin-gold"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              Dream.
+            </motion.div>
+            <motion.div
+              className="text-5xl md:text-6xl font-display font-bold text-white"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+            >
+              Create.
+            </motion.div>
+          </div>
+
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             Digital-решения для вашего бизнеса: от идеи до реализации под ключ.
           </p>

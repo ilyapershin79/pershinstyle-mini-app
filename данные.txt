@@ -8,3 +8,20 @@ git push -u origin main
 
 Твой Mini App теперь доступен по адресу:
 https://pershinstyle-mini-app-production.up.railway.app
+
+Твой Webhook URL для Telegram бота https://script.google.com/macros/s/AKfycbwApvtviN1ijdnw-28Rh4nPXIeHJNWESp6k7rR1K_CHmXuInTr8p2trZJCB4unY5MZf-w/exec
+
+🚀 ОСНОВНАЯ РЕКЛАМНАЯ ССЫЛКА:
+https://t.me/PershinStyleSolutions_Bot?start
+
+🤖 Ссылка для открытия бота:
+https://t.me/PershinStyleSolutions_Bot
+
+🔗 Ссылка с кнопкой "Начать" (Start):
+https://t.me/PershinStyleSolutions_Bot?start
+
+📱 Ссылка для открытия Mini App напрямую:
+https://t.me/PershinStyleSolutions_Bot?startapp
+
+🌐 Веб-версия Telegram:
+https://web.telegram.org/k/#@PershinStyleSolutions_Bot
