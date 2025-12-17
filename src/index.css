@@ -7,6 +7,9 @@
   body {
     @apply bg-pershin-blue-dark text-white antialiased;
     font-family: 'Inter', sans-serif;
+    /* Критически важно для адаптивности */
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
   }
 
   ::-webkit-scrollbar {
@@ -48,154 +51,70 @@
   }
 }
 
-/* ====== ФИКС ДЛЯ ШИРИНЫ В TELEGRAM WEBAPP ====== */
-/* Только для узких окон Telegram */
+/* ====== АДАПТИВНЫЕ СТИЛИ ДЛЯ ЛЮБЫХ УСТРОЙСТВ ====== */
 
-@media (max-width: 400px) {
-  .text-4xl, .text-3xl {
-    font-size: clamp(1.5rem, 5vw, 2rem) !important;
-    word-break: break-word;
-    line-height: 1.3 !important;
-  }
-
-  .min-h-screen {
-    padding-left: 0.5rem !important;
-    padding-right: 0.5rem !important;
-  }
-
-  /* Уменьшаем отступы у карточек */
-  .card-glass {
-    padding-left: 0.75rem !important;
-    padding-right: 0.75rem !important;
-  }
-
-  /* Уменьшаем видео-логотип */
-  video {
-    max-width: 80% !important;
-    height: auto !important;
-  }
+/* 1. ГИБКИЕ ШРИФТЫ на основе vw */
+.text-4xl {
+  font-size: clamp(1.5rem, 5vw, 3rem) !important;
+  line-height: clamp(1.2, 5vw, 1.5) !important;
 }
 
-/* ====== МОБИЛЬНЫЕ СТИЛИ ДЛЯ TELEGRAM ====== */
-/* Для iOS/Android Telegram WebApp */
-
-@media (max-width: 380px) {
-  /* Ещё меньше шрифты для очень узких окон */
-  .text-4xl {
-    font-size: 1.75rem !important;
-    line-height: 1.2 !important;
-  }
-
-  .text-3xl {
-    font-size: 1.5rem !important;
-  }
-
-  /* Уменьшаем видео */
-  video {
-    width: 120px !important;
-    height: 120px !important;
-  }
-
-  /* Уменьшаем отступы ещё больше */
-  .min-h-screen {
-    padding-left: 0.25rem !important;
-    padding-right: 0.25rem !important;
-  }
-
-  .p-6 {
-    padding: 0.5rem !important;
-  }
-
-  /* Делаем кнопки меньше */
-  .btn-primary, .btn-secondary {
-    padding: 0.5rem 1rem !important;
-    font-size: 0.875rem !important;
-  }
+.text-3xl {
+  font-size: clamp(1.25rem, 4vw, 2.5rem) !important;
+  line-height: clamp(1.2, 4vw, 1.4) !important;
 }
 
-/* Для совсем крошечных мобильных окон */
-@media (max-height: 600px) and (max-width: 350px) {
-  .text-4xl {
-    font-size: 1.5rem !important;
-  }
-
-  .text-3xl {
-    font-size: 1.25rem !important;
-  }
-
-  /* Скрываем второстепенные элементы */
-  .text-gray-500, .text-gray-400 {
-    font-size: 0.75rem !important;
-  }
+.text-2xl {
+  font-size: clamp(1rem, 3vw, 2rem) !important;
 }
 
-/* ====== ФИКС ДЛЯ ВСЕХ КОНТЕЙНЕРОВ ====== */
-/* Гарантируем что текст никогда не вылазит за границы */
+/* 2. ГИБКИЕ ОТСТУПЫ */
+.min-h-screen {
+  padding-left: max(0.5rem, 3vw) !important;
+  padding-right: max(0.5rem, 3vw) !important;
+}
 
-/* ВСЕ элементы с текстом */
-p, span, div, h1, h2, h3, h4, h5, h6, li {
+.p-6 {
+  padding: max(0.75rem, 2vw) !important;
+}
+
+/* 3. ГИБКОЕ ВИДЕО */
+video {
+  width: min(100%, 200px) !important;
+  height: auto !important;
+}
+
+/* 4. ГИБКИЕ КНОПКИ */
+.btn-primary, .btn-secondary {
+  padding: max(0.5rem, 1.5vw) max(1rem, 3vw) !important;
+  font-size: clamp(0.875rem, 2.5vw, 1rem) !important;
+}
+
+/* 5. ОБЯЗАТЕЛЬНЫЙ ПЕРЕНОС ТЕКСТА */
+p, span, div, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word !important;
   word-break: break-word !important;
   hyphens: auto !important;
-  max-width: 100% !important;
 }
 
-/* Специальный фикс для карточек с текстом */
-.card-glass * {
-  overflow-wrap: break-word !important;
-  word-break: break-word !important;
-}
-
-/* Контейнеры с длинным текстом */
-.bg-gradient-to-br, .bg-white\/10, .backdrop-blur-lg {
-  overflow-wrap: break-word !important;
-}
-
-/* Особый фикс для 3-го экрана (ServicesScreen) */
-/* Контейнер "Интеграция и автоматизация" */
-.min-h-screen > div > div {
-  overflow-wrap: break-word !important;
-  word-break: break-word !important;
-}
-
-/* Ядерный вариант: все flex-контейнеры */
+/* 6. КОНТЕЙНЕРЫ НЕ ДОЛЖНЫ ЛОМАТЬСЯ */
 .flex, .flex-col, .inline-flex {
-  min-width: 0 !important; /* Разрешает сжатие */
+  flex-shrink: 1 !important;
+  min-width: 0 !important;
 }
 
-/* Фикс для текста в кнопках */
-.btn-primary, .btn-secondary {
-  white-space: normal !important;
-  text-align: center !important;
-  line-height: 1.2 !important;
+/* 7. КАРТОЧКИ АДАПТИВНЫЕ */
+.card-glass {
+  padding: max(0.75rem, 2vw) !important;
 }
 
-/* Глобальный запрет на выход за границы */
+/* 8. БАЗОВЫЕ ФИКСЫ */
+html, body, #root {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  width: 100% !important;
+}
+
 * {
   box-sizing: border-box !important;
-  max-width: 100% !important;
-}
-
-/* Гарантируем что длинные слова переносятся */
-.text-center, .text-left, .text-right {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-}
-
-/* Фикс для очень длинных заголовков */
-h1, h2, h3 {
-  max-width: 100%;
-  overflow-wrap: break-word;
-}
-
-/* Убираем горизонтальный скролл в Telegram */
-html, body {
-  overflow-x: hidden;
-  max-width: 100vw;
-}
-
-/* Фикс для корневого контейнера */
-#root {
-  width: 100%;
-  overflow-x: hidden;
 }
