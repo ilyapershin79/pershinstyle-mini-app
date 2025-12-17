@@ -76,6 +76,106 @@
   }
 }
 
+/* ====== МОБИЛЬНЫЕ СТИЛИ ДЛЯ TELEGRAM ====== */
+/* Для iOS/Android Telegram WebApp */
+
+@media (max-width: 380px) {
+  /* Ещё меньше шрифты для очень узких окон */
+  .text-4xl {
+    font-size: 1.75rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .text-3xl {
+    font-size: 1.5rem !important;
+  }
+
+  /* Уменьшаем видео */
+  video {
+    width: 120px !important;
+    height: 120px !important;
+  }
+
+  /* Уменьшаем отступы ещё больше */
+  .min-h-screen {
+    padding-left: 0.25rem !important;
+    padding-right: 0.25rem !important;
+  }
+
+  .p-6 {
+    padding: 0.5rem !important;
+  }
+
+  /* Делаем кнопки меньше */
+  .btn-primary, .btn-secondary {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.875rem !important;
+  }
+}
+
+/* Для совсем крошечных мобильных окон */
+@media (max-height: 600px) and (max-width: 350px) {
+  .text-4xl {
+    font-size: 1.5rem !important;
+  }
+
+  .text-3xl {
+    font-size: 1.25rem !important;
+  }
+
+  /* Скрываем второстепенные элементы */
+  .text-gray-500, .text-gray-400 {
+    font-size: 0.75rem !important;
+  }
+}
+
+/* ====== ФИКС ДЛЯ ВСЕХ КОНТЕЙНЕРОВ ====== */
+/* Гарантируем что текст никогда не вылазит за границы */
+
+/* ВСЕ элементы с текстом */
+p, span, div, h1, h2, h3, h4, h5, h6, li {
+  overflow-wrap: break-word !important;
+  word-break: break-word !important;
+  hyphens: auto !important;
+  max-width: 100% !important;
+}
+
+/* Специальный фикс для карточек с текстом */
+.card-glass * {
+  overflow-wrap: break-word !important;
+  word-break: break-word !important;
+}
+
+/* Контейнеры с длинным текстом */
+.bg-gradient-to-br, .bg-white\/10, .backdrop-blur-lg {
+  overflow-wrap: break-word !important;
+}
+
+/* Особый фикс для 3-го экрана (ServicesScreen) */
+/* Контейнер "Интеграция и автоматизация" */
+.min-h-screen > div > div {
+  overflow-wrap: break-word !important;
+  word-break: break-word !important;
+}
+
+/* Ядерный вариант: все flex-контейнеры */
+.flex, .flex-col, .inline-flex {
+  min-width: 0 !important; /* Разрешает сжатие */
+}
+
+/* Фикс для текста в кнопках */
+.btn-primary, .btn-secondary {
+  white-space: normal !important;
+  text-align: center !important;
+  line-height: 1.2 !important;
+}
+
+/* Глобальный запрет на выход за границы */
+* {
+  box-sizing: border-box !important;
+  max-width: 100% !important;
+}
+
 /* Гарантируем что длинные слова переносятся */
 .text-center, .text-left, .text-right {
   overflow-wrap: break-word;
@@ -94,7 +194,7 @@ html, body {
   max-width: 100vw;
 }
 
-/* Фикс для flex-контейнеров */
+/* Фикс для корневого контейнера */
 #root {
   width: 100%;
   overflow-x: hidden;
