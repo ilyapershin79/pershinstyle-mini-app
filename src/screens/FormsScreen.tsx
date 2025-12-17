@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Send, User, MessageSquare, HelpCircle } from 'lucide-react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useState } from 'react';
+import { sendDataToBot } from '../telegram/initTelegram';
 
 const FormsScreen = () => {
   const navigate = useNavigate();
@@ -21,8 +22,30 @@ const FormsScreen = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert(formType === 'tz' ? 'ТЗ отправлено на оценку!' : 'Запрос на консультацию отправлен!');
-    navigate('/thankyou');
+
+    // Подготовка данных для отправки
+    const dataToSend = {
+      formType: formType, // 'tz' или 'consultation'
+      userName: formData.name,
+      userContact: formData.contact,
+      description: formData.description,
+      tzLink: formData.tzLink || null,
+      timestamp: new Date().toISOString()
+    };
+
+    // Отправка данных в Telegram бота
+    const isSent = sendDataToBot(dataToSend);
+
+    if (isSent) {
+      console.log('Данные формы отправлены в бота:', dataToSend);
+      // В реальном Mini App бот получит данные и закроет приложение
+      navigate('/thankyou');
+    } else {
+      // Для отладки в браузере
+      console.log('Отправка в браузере (в Telegram отправилось бы):', dataToSend);
+      alert(formType === 'tz' ? 'ТЗ отправлено на оценку!' : 'Запрос на консультацию отправлен!');
+      navigate('/thankyou');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

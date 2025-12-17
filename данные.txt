@@ -1,0 +1,10 @@
+git remote add origin https://github.com/ilyapershin79/pershinstyle-mini-app.git
+git branch -M main
+git push -u origin main
+
+токен PershinStyleSolutions_Bot 8143534810:AAFcMj6b69CbCd9mnLM3Nzs1ZDmpfXA_Q-8
+
+ ОТЛИЧНО! Ты нашел публичный URL!
+
+Твой Mini App теперь доступен по адресу:
+https://pershinstyle-mini-app-production.up.railway.app

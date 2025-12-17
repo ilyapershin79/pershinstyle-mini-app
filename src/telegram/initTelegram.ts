@@ -1,7 +1,7 @@
-// Способ 1: Попробуем импорт без init, так как SDK может сам автоматически инициализироваться
+import * as TelegramWebApp from '@twa-dev/sdk';
+
 export const initTelegramWebApp = () => {
-  // Не вызываем init(), так как он может быть вызван автоматически
-  // или пакет экспортируется по-другому
+  TelegramWebApp.init();
 
   const tg = window.Telegram?.WebApp;
 
@@ -18,7 +18,6 @@ export const initTelegramWebApp = () => {
     themeParams: tg.themeParams
   });
 
-  // Расширяем на весь экран
   tg.expand();
 
   return tg;
@@ -46,4 +45,20 @@ export const getTelegramData = () => {
     initDataUnsafe: tg?.initDataUnsafe || {},
     queryId: tg?.initDataUnsafe?.query_id || null
   };
+};
+
+// Отправка данных в Telegram бота
+export const sendDataToBot = (data: Record<string, any>) => {
+  const tg = window.Telegram?.WebApp;
+
+  if (tg && tg.sendData) {
+    // Отправляем данные в формате строки
+    tg.sendData(JSON.stringify(data));
+    console.log('Данные отправлены в бота:', data);
+    return true;
+  }
+
+  // Для отладки в браузере
+  console.log('Данные для отправки в бота:', data);
+  return false;
 };
