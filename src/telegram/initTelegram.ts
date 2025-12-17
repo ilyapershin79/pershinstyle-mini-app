@@ -1,8 +1,6 @@
-import * as TelegramWebApp from '@twa-dev/sdk';
+// Telegram SDK автоматически добавляется в window
 
 export const initTelegramWebApp = () => {
-  TelegramWebApp.init();
-
   const tg = window.Telegram?.WebApp;
 
   if (!tg) {
@@ -10,13 +8,7 @@ export const initTelegramWebApp = () => {
     return null;
   }
 
-  console.log('Telegram WebApp инициализирован:', {
-    platform: tg.platform,
-    version: tg.version,
-    initData: tg.initData,
-    initDataUnsafe: tg.initDataUnsafe,
-    themeParams: tg.themeParams
-  });
+  console.log('Telegram WebApp инициализирован');
 
   tg.expand();
 
@@ -47,18 +39,15 @@ export const getTelegramData = () => {
   };
 };
 
-// Отправка данных в Telegram бота
 export const sendDataToBot = (data: Record<string, any>) => {
   const tg = window.Telegram?.WebApp;
 
   if (tg && tg.sendData) {
-    // Отправляем данные в формате строки
     tg.sendData(JSON.stringify(data));
     console.log('Данные отправлены в бота:', data);
     return true;
   }
 
-  // Для отладки в браузере
   console.log('Данные для отправки в бота:', data);
   return false;
 };
