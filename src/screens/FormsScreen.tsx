@@ -20,7 +20,7 @@ const FormsScreen = () => {
     navigate('/pricing');
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Подготовка данных для отправки
@@ -33,16 +33,15 @@ const FormsScreen = () => {
       timestamp: new Date().toISOString()
     };
 
-    // Отправка данных в Telegram бота
-    const isSent = sendDataToBot(dataToSend);
+    // ОТПРАВКА ДАННЫХ В GAS (с await)
+    const isSent = await sendDataToBot(dataToSend);
 
     if (isSent) {
-      console.log('Данные формы отправлены в бота:', dataToSend);
-      // В реальном Mini App бот получит данные и закроет приложение
+      console.log('✅ Данные формы отправлены в GAS:', dataToSend);
       navigate('/thankyou');
     } else {
       // Для отладки в браузере
-      console.log('Отправка в браузере (в Telegram отправилось бы):', dataToSend);
+      console.log('⚠️ Отправка в браузере (в Telegram отправилось бы):', dataToSend);
       alert(formType === 'tz' ? 'ТЗ отправлено на оценку!' : 'Запрос на консультацию отправлен!');
       navigate('/thankyou');
     }
