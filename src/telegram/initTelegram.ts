@@ -9,7 +9,9 @@ export const initTelegramWebApp = () => {
   }
 
   console.log('Telegram WebApp инициализирован');
+
   tg.expand();
+
   return tg;
 };
 
@@ -37,17 +39,15 @@ export const getTelegramData = () => {
   };
 };
 
-export const sendDataToBot = (data: any) => {
+export const sendDataToBot = (data: Record<string, any>) => {
   const tg = window.Telegram?.WebApp;
 
-  // ОТПРАВЛЯЕМ ДАННЫЕ ТОЛЬКО ЧЕРЕЗ TELEGRAM
   if (tg && tg.sendData) {
     tg.sendData(JSON.stringify(data));
-    console.log('✅ Данные отправлены через Telegram WebApp');
+    console.log('Данные отправлены в бота:', data);
     return true;
   }
 
-  // ЕСЛИ НЕ В TELEGRAM (браузер) - не отправляем вообще
-  console.warn('❌ Запущено вне Telegram. Данные не отправлены:', data);
+  console.log('Данные для отправки в бота:', data);
   return false;
 };
